@@ -4,45 +4,73 @@ const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
-
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola você se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, ele também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento?",
+        enunciado: "Você está em casa e percebe que a torneira da cozinha está pingando água. O que você faz?",
         alternativas: [
-            "Isso é assustador!",
-            "Isso é maravilhoso!"
+            {
+                texto: "Ignora, afinal é apenas um pequeno vazamento.",
+                afirmacao: "Você escolheu não dar muita atenção para o desperdício, mas sabe que pequenas ações podem ter um grande impacto."
+            },
+            {
+                texto: "Conserta imediatamente ou chama um encanador.",
+                afirmacao: "Você agiu prontamente para evitar o desperdício de água e preservou esse recurso vital."
+            }
         ]
     },
     {
-        enunciado: "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre esta tecnologia. No fim de uma aula ela pede que você escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude você toma?",
+        enunciado: "Ao fazer compras no supermercado, você se depara com a escolha entre produtos orgânicos e convencionais. O que decide?",
         alternativas: [
-            "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-            "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema.",
+            {
+                texto: "Escolhe os produtos orgânicos para apoiar práticas agrícolas sustentáveis.",
+                afirmacao: "Você optou por apoiar a agricultura sustentável e reduzir o impacto de pesticidas no meio ambiente."
+            },
+            {
+                texto: "Prefere os produtos convencionais por serem mais baratos.",
+                afirmacao: "Você priorizou o preço nas suas compras, mas pensa em equilibrar custo e sustentabilidade no futuro."
+            }
         ]
     },
     {
-        enunciado: "Após a elaboração do trabalho, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa também foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como você se posiciona?",
+        enunciado: "Na escola, seu professor propõe um projeto sobre o uso de energia limpa. Qual ideia você sugere?",
         alternativas: [
-            "Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-            "Me preocupo com as pessoas que perderão seus empregos para máquinas e defendem a importância de proteger os trabalhadores."
+            {
+                texto: "Implementar painéis solares na escola para reduzir o consumo de energia elétrica.",
+                afirmacao: "Você sugeriu uma solução prática que pode reduzir as emissões de carbono e poupar recursos energéticos."
+            },
+            {
+                texto: "Promover o uso de bicicletas como transporte para os estudantes.",
+                afirmacao: "Você incentivou um modo de transporte ecológico, promovendo a saúde e reduzindo a poluição."
+            }
         ]
     },
     {
-        enunciado: "Ao final da discussão, você precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
+        enunciado: "Durante uma viagem à praia, você vê muito lixo espalhado pela areia. O que você faz?",
         alternativas: [
-            "Criar uma imagem utilizando uma plataforma de design como o Paint.",
-            "Criar uma imagem utilizando um gerador de imagem de IA."
+            {
+                texto: "Organiza uma coleta de lixo com seus amigos.",
+                afirmacao: "Você liderou um esforço para limpar a praia, ajudando a proteger os ecossistemas marinhos."
+            },
+            {
+                texto: "Finge que não viu e continua aproveitando o passeio.",
+                afirmacao: "Você escolheu não se envolver dessa vez, mas sabe que a poluição nas praias prejudica muito o meio ambiente."
+            }
         ]
     },
     {
-        enunciado: "Você tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho está um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda de uma IA. O problema é que o trabalho está totalmente igual ao do chat. O que você faz?",
+        enunciado: "Ao final do ano letivo, a escola realiza uma feira sobre sustentabilidade. Qual projeto você apresenta?",
         alternativas: [
-           "Escrever comandos para o chat é uma forma de contribuir com o trabalho, por isso não é um problema utilizar o texto inteiro.",
-            "O chat pode ser uma tecnologia muito avançada, mas é preciso manter a atenção pois toda máquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais é essencial."
+            {
+                texto: "Um sistema de compostagem para resíduos orgânicos.",
+                afirmacao: "Você apresentou um projeto que ajuda a reduzir o lixo orgânico e cria adubo para plantas."
+            },
+            {
+                texto: "Um painel sobre o impacto do plástico nos oceanos.",
+                afirmacao: "Você aumentou a conscientização sobre o problema da poluição plástica e suas consequências para a vida marinha."
+            }
         ]
-    },
+    }
 ];
-
 
 let atual = 0;
 let perguntaAtual;
@@ -51,14 +79,14 @@ let historiaFinal = "";
 function mostraPergunta() {
     if (atual >= perguntas.length) {
         mostraResultado();
-        return; 
+        return;
     }
-
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
-     caixaAlternativas.textContent = "";
+    caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
+
 function mostraAlternativas(){
     for(const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
@@ -66,18 +94,14 @@ function mostraAlternativas(){
         botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
-    
-// código omitido
+}
 
 function respostaSelecionada(opcaoSelecionada) {
     const afirmacoes = opcaoSelecionada.afirmacao;
-    historia += afirmacoes + "";
+    historiaFinal += afirmacoes + " ";
     atual++;
     mostraPergunta();
 }
-
-
-// código omitido
 
 function mostraResultado() {
     caixaPerguntas.textContent = "Em 2049...";
@@ -85,10 +109,4 @@ function mostraResultado() {
     caixaAlternativas.textContent = "";
 }
 
-// código omitido
-
 mostraPergunta();
-
-
-
-

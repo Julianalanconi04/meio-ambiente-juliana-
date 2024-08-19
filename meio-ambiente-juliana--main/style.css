@@ -23,4 +23,40 @@
   h1{
     color: var(--cor-destaque);
    }
-         
+   /* código escondido */
+
+button {
+  background-color: var(--cor-pri/* código escondido */
+
+  button {
+      background-color: var(--cor-principal);
+      color: var(--cor-destaque);
+      border: none;
+      border-radius: 15px;
+      padding: 15px;
+      transition: background-color 0.3s;
+  }
+  
+  button:hover {
+      background-color: var(--cor-destaque);
+      color: var(--cor-secundaria);
+  }
+  
+  border-radius: 15px;
+  padding: 15px;
+}
+/* código escondido */
+
+button {
+  background-color: var(--cor-principal);
+  color: var(--cor-destaque);
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--cor-destaque);
+  color: var(--cor-secundaria);
+}
